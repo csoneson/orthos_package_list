@@ -1,6 +1,6 @@
-# on:
-#   push
-#
+on:
+  push
+
 name: generate_pkg_list
 
 jobs:
@@ -16,10 +16,10 @@ jobs:
         - {os: windows-latest, bioc: 'devel'}
         - {os: ubuntu-latest, bioc: 'devel'}
         - {os: macos-14, bioc: 'devel'}
-        - {os: macOS-12, bioc: '3.19'}
-        - {os: windows-latest, bioc: '3.19'}
-        - {os: ubuntu-latest, bioc: '3.19'}
-        - {os: macos-14, bioc: '3.19'}
+        #- {os: macOS-12, bioc: '3.19'}
+        #- {os: windows-latest, bioc: '3.19'}
+        #- {os: ubuntu-latest, bioc: '3.19'}
+        #- {os: macos-14, bioc: '3.19'}
 
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
@@ -37,20 +37,52 @@ jobs:
           bioc-version: ${{ matrix.config.bioc }}
 
       - name: Build and test environment
+        if: runner.os != 'Windows'
         run: |
           BiocManager::install(c("basilisk", "basilisk.utils"))
 
           deps <- c(
-              #"tensorflow-hub>=0.12.0",
+              "scipy==1.14.0",
+              "requests==2.32.3",
+              "Pillow==10.4.0",
+              "h5py==3.11.0",
+              "pandas==2.2.2",
+              "tensorflow==2.17.0",
+              "keras==3.5.0",
+              "pydot==3.0.1",
+              "numpy==1.26.4"
+          )
+
+          basilisk.utils::installConda()
+          basilisk::setupBasiliskEnv(
+            envpath = file.path(".", "orthos-basilisk-env"),
+            packages = deps,
+            channels = c("conda-forge"))
+          res <- basilisk::basiliskRun(
+            env = file.path(".", "orthos-basilisk-env"),
+            fun = function() {
+                pd <- reticulate::import("pandas")
+                pd$`__version__`
+            })
+          print(res)
+          print(basilisk::listPackages(env = file.path(".", "orthos-basilisk-env")))
+        shell: Rscript {0}
+
+      - name: Build and test environment
+        if: runner.os == 'Windows'
+        run: |
+          BiocManager::install(c("basilisk", "basilisk.utils"))
+
+          deps <- c(
               "scipy==1.7.3",
-              "requests==2.28.1",
+              "requests==2.32.2",
               "Pillow==9.2.0",
               "h5py==3.7.0",
               "pandas==1.3.5",
-              "tensorflow==2.15.0",
-              "keras==2.15.0",
+              "tensorflow==1.14.0",
+              "keras==2.3.1",
               "pydot==1.4.2",
-              "numpy==1.22.4"
+              "numpy==1.21.6"
           )
 
           basilisk.utils::installConda()
