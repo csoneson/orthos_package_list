@@ -1,0 +1,9 @@
+scipy==1.7.3
+requests
+Pillow
+h5py
+pandas
+tensorflow==2.15.0
+keras==2.15.0
+pydot
+numpy
