@@ -31,12 +31,21 @@ jobs:
       - name: Check out repo
         uses: actions/checkout@v2
 
-      - name: Set up miniforge
+      - name: Set up miniforge and build environment (non-Windows)
+        if: runner.os != 'Windows'
         uses: conda-incubator/setup-miniconda@v3
         with:
           miniforge-version: latest
           activate-environment: ./testenv
           environment-file: testenv.yml
+
+      - name: Set up miniforge and build environment (Windows)
+        if: runner.os == 'Windows'
+        uses: conda-incubator/setup-miniconda@v3
+        with:
+          miniforge-version: latest
+          activate-environment: ./testenv
+          environment-file: testenv_windows.yml
 
       - name: List content of environment
         run: conda list -p ./testenv
