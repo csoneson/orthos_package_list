@@ -1,0 +1,13 @@
+name: testenv
+channels:
+  - conda-forge
+dependencies:
+  - scipy
+  - requests
+  - Pillow
+  - h5py
+  - pandas
+  - tensorflow
+  - keras
+  - pydot
+  - numpy
