@@ -1,6 +1,6 @@
-on:
-  push
-
+# on:
+#   push
+#
 name: generate_pkg_list
 
 jobs:
