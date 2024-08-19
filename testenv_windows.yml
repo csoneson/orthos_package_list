@@ -8,7 +8,7 @@ dependencies:
   - Pillow
   - h5py
   - pandas
-  - tensorflow
+  - tensorflow>=2.0.0
   - keras
   - pydot
   - numpy
