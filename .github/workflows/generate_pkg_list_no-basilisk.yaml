@@ -39,14 +39,11 @@ jobs:
           environment-file: testenv.yml
 
       - name: List content of environment
-        run: |
-          conda activate testenv
-          conda list
+        run: conda list -p ./testenv
 
       - name: List content of environment in format suitable for pasting into R
         if: runner.os != 'Windows'
         run: |
-          conda activate testenv
-          conda list | tail -n +4 |\
+          conda list -p ./testenv | tail -n +4 |\
           tr -s ' ' | cut -f1,2 -d' ' |\
           sed -e 's/ /==/' -e 's/^..*$/"&",/' -e '$ s/.$/)/' -e '1s/^/c(/'
