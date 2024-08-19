@@ -6,20 +6,16 @@ name: generate_pkg_list
 jobs:
   generate_pkg_list:
     runs-on: ${{ matrix.config.os }}
-    name: ${{ matrix.config.os }} - ${{ matrix.config.bioc }}
+    name: ${{ matrix.config.os }}
 
     strategy:
       fail-fast: false
       matrix:
         config:
-        - {os: macOS-12, bioc: 'devel'}
-        - {os: windows-latest, bioc: 'devel'}
-        - {os: ubuntu-latest, bioc: 'devel'}
-        - {os: macos-14, bioc: 'devel'}
-        - {os: macOS-12, bioc: '3.19'}
-        - {os: windows-latest, bioc: '3.19'}
-        - {os: ubuntu-latest, bioc: '3.19'}
-        - {os: macos-14, bioc: '3.19'}
+        - {os: macOS-12}
+        - {os: windows-latest}
+        - {os: ubuntu-latest}
+        - {os: macos-14}
 
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
