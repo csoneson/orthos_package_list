@@ -35,7 +35,7 @@ jobs:
         uses: conda-incubator/setup-miniconda@v3
         with:
           miniforge-version: latest
-          activate-environment: testenv
+          activate-environment: ./testenv
           environment-file: testenv.yml
 
       - name: List content of environment
