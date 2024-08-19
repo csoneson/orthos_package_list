@@ -40,12 +40,14 @@ jobs:
 
       - name: List content of environment
         run: |
+          conda init
           conda activate testenv
           conda list
 
       - name: List content of environment in format suitable for pasting into R
         if: runner.os != 'Windows'
         run: |
+          conda init
           conda activate testenv
           conda list | tail -n +4 |\
           tr -s ' ' | cut -f1,2 -d' ' |\
