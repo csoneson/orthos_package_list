@@ -16,6 +16,7 @@ jobs:
         - {os: windows-latest, bioc: 'devel'}
         - {os: ubuntu-latest, bioc: 'devel'}
         - {os: macos-14, bioc: 'devel'}
+        - {os: ubuntu-24.04-arm, bioc: 'devel'}
         #- {os: macOS-12, bioc: '3.19'}
         #- {os: windows-latest, bioc: '3.19'}
         #- {os: ubuntu-latest, bioc: '3.19'}

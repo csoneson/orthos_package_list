@@ -16,6 +16,7 @@ jobs:
         - {os: windows-latest}
         - {os: ubuntu-latest}
         - {os: macos-14}
+        - {os: ubuntu-24.04-arm}
 
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
