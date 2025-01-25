@@ -144,7 +144,7 @@ jobs:
         shell: Rscript {0}
 
       - name: Setup Miniconda
-        uses: conda-incubator/setup-miniconda@v2.2.0
+        uses: conda-incubator/setup-miniconda@v3.1.1
         with:
           miniforge-version: "latest"
 
