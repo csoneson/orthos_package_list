@@ -44,18 +44,18 @@ jobs:
           BiocManager::install(c("basilisk", "basilisk.utils"))
 
           deps <- c(
-              "scipy==1.14.0",
+              "scipy==1.15.2",
               "requests==2.32.3",
-              "Pillow==10.4.0",
-              "h5py==3.11.0",
-              "pandas==2.2.2",
+              "Pillow==11.1.0",
+              "h5py==3.13.0",
+              "pandas==2.2.3",
               #"tensorflow==2.15.0",
-              "keras==2.15.0",
-              "pydot==3.0.1",
-              "numpy==1.26.4"
+              "keras==3.9.0",
+              "pydot==3.0.4",
+              "numpy==2.2.4"
           )
 
-          pipdeps <- c("tensorflow==2.15.0")
+          pipdeps <- c("tensorflow==2.18.0")
 
           basilisk.utils::installConda()
           basilisk::setupBasiliskEnv(
@@ -79,15 +79,15 @@ jobs:
           BiocManager::install(c("basilisk", "basilisk.utils"))
 
           deps <- c(
-              "scipy==1.14.0",
+              "scipy==1.15.2",
               "requests==2.32.3",
-              "Pillow==10.4.0",
-              "h5py==3.11.0",
-              "pandas==2.2.2",
-              "tensorflow==2.15.0",
-              "keras==2.15.0",
-              "pydot==3.0.1",
-              "numpy==1.26.4"
+              "Pillow==11.1.0",
+              "h5py==3.13.0",
+              "pandas==2.2.3",
+              "tensorflow==2.18.0",
+              "keras==3.9.0",
+              "pydot==3.0.4",
+              "numpy==2.2.4"
           )
 
           basilisk.utils::installConda()
@@ -123,11 +123,13 @@ jobs:
               "numpy==1.22.4"
           )
 
+          pipdeps <- c("tensorflow==2.10.0", "keras==2.10.0")
+
           basilisk.utils::installConda()
           basilisk::setupBasiliskEnv(
             envpath = file.path(".", "orthos-basilisk-env"),
             packages = deps,
-            pip = c("tensorflow==2.10.0", "keras==2.10.0"),
+            pip = pipdeps,
             channels = c("conda-forge", "nodefaults"))
           res <- basilisk::basiliskRun(
             env = file.path(".", "orthos-basilisk-env"),
