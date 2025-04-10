@@ -55,7 +55,7 @@ jobs:
               "numpy==2.2.4"
           )
 
-          pipdeps <- c("tensorflow==2.18.0")
+          pipdeps <- c("tensorflow==2.15.0")
 
           basilisk.utils::installConda()
           basilisk::setupBasiliskEnv(
@@ -84,10 +84,10 @@ jobs:
               "Pillow==11.1.0",
               "h5py==3.13.0",
               "pandas==2.2.3",
-              "tensorflow==2.18.0",
+              "tensorflow==2.15.0",
               "keras==2.15.0",
               "pydot==3.0.4",
-              "numpy==2.2.4"
+              "numpy==1.26.4"
           )
 
           basilisk.utils::installConda()
