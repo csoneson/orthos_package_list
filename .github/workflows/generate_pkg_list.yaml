@@ -50,7 +50,7 @@ jobs:
               "h5py==3.13.0",
               "pandas==2.2.3",
               #"tensorflow==2.15.0",
-              "keras==3.9.0",
+              "keras==2.15.0",
               "pydot==3.0.4",
               "numpy==2.2.4"
           )
@@ -85,7 +85,7 @@ jobs:
               "h5py==3.13.0",
               "pandas==2.2.3",
               "tensorflow==2.18.0",
-              "keras==3.9.0",
+              "keras==2.15.0",
               "pydot==3.0.4",
               "numpy==2.2.4"
           )

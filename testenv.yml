@@ -8,7 +8,7 @@ dependencies:
   - Pillow
   - h5py
   - pandas
-  - tensorflow>=2.16.0
-  - keras>=2.16.0
+  - tensorflow==2.18.0
+  - keras==2.15.0
   - pydot
   - numpy
