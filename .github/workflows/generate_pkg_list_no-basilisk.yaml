@@ -1,5 +1,5 @@
 on:
-  workflow_dispatch:
+  push:
 
 name: generate_pkg_list
 
@@ -12,10 +12,10 @@ jobs:
       fail-fast: false
       matrix:
         config:
-        - {os: macOS-12}
+        - {os: macos-13}
         - {os: windows-latest}
         - {os: ubuntu-latest}
-        - {os: macos-14}
+        - {os: macos-15}
         - {os: ubuntu-24.04-arm}
 
     env:
