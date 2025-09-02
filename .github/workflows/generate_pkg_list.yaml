@@ -13,10 +13,10 @@ jobs:
       matrix:
         config:
         - {os: macos-13, bioc: 'devel'}
-        - {os: windows-latest, bioc: 'devel'}
-        - {os: ubuntu-latest, bioc: 'devel'}
+        # - {os: windows-latest, bioc: 'devel'}
+        # - {os: ubuntu-latest, bioc: 'devel'}
         - {os: macos-15, bioc: 'devel'}
-        - {os: ubuntu-24.04-arm, bioc: 'devel'}
+        # - {os: ubuntu-24.04-arm, bioc: 'devel'}
 
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
@@ -79,22 +79,22 @@ jobs:
           BiocManager::install(c("basilisk", "basilisk.utils"))
 
           deps <- c(
-              "scipy==1.15.2",
-              "requests==2.32.3",
-              "Pillow==11.1.0",
-              "h5py==3.13.0",
-              "pandas==2.2.3",
-              "tensorflow==2.15.0",
-              "keras==2.15.0",
-              "pydot==3.0.4",
+              #"scipy==1.15.2",
+              "requests==2.32.5",
+              "Pillow==11.3.0",
+              "h5py==3.14.0",
+              "pandas==2.3.2",
+              "tensorflow==2.20.0",
+              "keras==3.11.3",
+              #"pydot==3.0.4",
               "numpy==1.26.4"
           )
 
-          basilisk.utils::installConda()
+          #basilisk.utils::installConda()
           basilisk::setupBasiliskEnv(
             envpath = file.path(".", "orthos-basilisk-env"),
-            packages = deps,
-            channels = c("conda-forge", "nodefaults"))
+            packages = deps)#,
+            #channels = c("conda-forge", "nodefaults"))
           res <- basilisk::basiliskRun(
             env = file.path(".", "orthos-basilisk-env"),
             fun = function() {
@@ -141,17 +141,17 @@ jobs:
           print(basilisk::listPackages(env = file.path(".", "orthos-basilisk-env")))
         shell: Rscript {0}
 
-      - name: Setup Miniconda
-        uses: conda-incubator/setup-miniconda@v3.1.1
-        with:
-          miniforge-version: "latest"
+      # - name: Setup Miniconda
+      #   uses: conda-incubator/setup-miniconda@v3.1.1
+      #   with:
+      #     miniforge-version: "latest"
 
       - name: List content of environment
-        run: conda list -p ./orthos-basilisk-env
+        run: pip3 list ./orthos-basilisk-env
 
-      - name: List content of environment in format suitable for pasting into R
-        if: runner.os != 'Windows'
-        run: |
-          conda list -p ./orthos-basilisk-env | tail -n +4 |\
-          tr -s ' ' | cut -f1,2 -d' ' |\
-          sed -e 's/ /==/' -e 's/^..*$/"&",/' -e '$ s/.$/)/' -e '1s/^/c(/'
+      # - name: List content of environment in format suitable for pasting into R
+      #   if: runner.os != 'Windows'
+      #   run: |
+      #     conda list -p ./orthos-basilisk-env | tail -n +4 |\
+      #     tr -s ' ' | cut -f1,2 -d' ' |\
+      #     sed -e 's/ /==/' -e 's/^..*$/"&",/' -e '$ s/.$/)/' -e '1s/^/c(/'
