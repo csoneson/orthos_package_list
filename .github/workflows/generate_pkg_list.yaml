@@ -38,7 +38,7 @@ jobs:
         with:
           bioc-version: ${{ matrix.config.bioc }}
 
-      - name: Build and test environment
+      - name: Build and test environment (Linux arm)
         if: matrix.config.os == 'ubuntu-24.04-arm'
         run: |
           BiocManager::install(c("basilisk", "basilisk.utils"))
@@ -70,8 +70,8 @@ jobs:
           print(basilisk::listPackages(env = file.path(".", "orthos-basilisk-env")))
         shell: Rscript {0}
 
-      - name: Build and test environment
-        if: runner.os != 'Windows' && matrix.config.os != 'ubuntu-24.04-arm'
+      - name: Build and test environment (macOS arm)
+        if: matrix.config.os == 'macos-latest'
         run: |
           BiocManager::install(c("basilisk", "basilisk.utils"))
 
@@ -102,7 +102,7 @@ jobs:
           print(basilisk::listPackages(env = file.path(".", "orthos-basilisk-env")))
         shell: Rscript {0}
 
-      - name: Build and test environment
+      - name: Build and test environment (macOS intel)
         if: matrix.config.os == 'macos-13'
         run: |
           BiocManager::install(c("basilisk", "basilisk.utils"))
@@ -134,7 +134,7 @@ jobs:
           print(basilisk::listPackages(env = file.path(".", "orthos-basilisk-env")))
         shell: Rscript {0}
 
-      - name: Build and test environment
+      - name: Build and test environment (Windows)
         if: runner.os == 'Windows'
         run: |
           BiocManager::install(c("basilisk", "basilisk.utils"))
