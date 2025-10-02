@@ -12,7 +12,7 @@ jobs:
       fail-fast: false
       matrix:
         config:
-        - {os: macos-13, bioc: 'devel'}
+        - {os: macos-15-intel, bioc: 'devel'}
         - {os: windows-latest, bioc: 'devel'}
         - {os: ubuntu-latest, bioc: 'devel'}
         - {os: macos-latest, bioc: 'devel'}
@@ -135,7 +135,7 @@ jobs:
         shell: Rscript {0}
 
       - name: Build and test environment (macOS intel)
-        if: matrix.config.os == 'macos-13'
+        if: matrix.config.os == 'macos-15-intel'
         run: |
           BiocManager::install(c("basilisk", "basilisk.utils"))
 
